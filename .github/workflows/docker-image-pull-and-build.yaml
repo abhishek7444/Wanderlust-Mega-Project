@@ -1,5 +1,5 @@
 name: matrix-configuration
-on: workflow_dispatch
+on: push
   
 jobs:
   deploy-on-ubuntu:
