@@ -1,23 +1,10 @@
-name: deploy-docker-image
-on: 
-  push:
-    branches: 
-      - main
-
+name: matrix-configuration
+on: workflow_dispatch
+  
 jobs:
-  code-checkout:
-    runs-on: ubuntu-latest
+  deploy-on-ubuntu:
+    runs-on: [self-hosted,'runner1']
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Docker login
-        run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ vars.DOCKER_USERNAME }}" --password-stdin
-
-      - name: Pull, tag and push Docker image
-        run: |
-          docker pull hello-world
-          # Tag the pulled image with your Docker Hub repo (add a tag, e.g. latest)
-          docker tag hello-world docker.io/${{ vars.DOCKER_USERNAME }}/hello-world:latest
-          docker push docker.io/${{ vars.DOCKER_USERNAME }}/hello-world:latest
+      - name: hello-world-on-self-hosted-runner
+        run: echo "hello welcome"
