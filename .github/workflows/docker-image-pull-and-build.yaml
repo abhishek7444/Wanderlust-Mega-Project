@@ -8,3 +8,8 @@ jobs:
     steps:
       - name: hello-world-on-self-hosted-runner
         run: echo "hello welcome"
+  deploy-on-runner-2:
+    runs-on: [self-hosted,'runner2']
+    steps:
+    - name: hosting-on-self-hosted-runner-2
+      run: echo "This is the runner2"
