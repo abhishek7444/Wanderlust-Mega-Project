@@ -1,0 +1,19 @@
+name: notify-on-teams
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Echo clone success
+        run: echo "code clone successful"
+
+      - name: Notify Teams on Build Completion
+        run: |
+          curl -H 'Content-Type: application/json' \
+               -d '{"text": " Build is complete!"}' \
+               "${{ secrets.TEAMS_WEBHOOK_URL }}"
